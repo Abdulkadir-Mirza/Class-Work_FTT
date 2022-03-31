@@ -1,0 +1,5 @@
+1	aaa	ce	ahm	
+12	bbb	ee	pune	
+2	qwe	ee	delhi	
+22	wwww	ee	puna	
+11	asadda	ww	quwait	
