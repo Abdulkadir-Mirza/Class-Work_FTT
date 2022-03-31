@@ -1,4 +1,0 @@
-Hi from vim sdckh
-I am trying pri
-nting this file from vim
-Have a good day
