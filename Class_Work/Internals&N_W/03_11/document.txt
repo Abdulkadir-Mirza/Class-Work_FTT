@@ -1,0 +1,80 @@
+->int pthread_create(pthread_t *ptr,pthread_attr_t *attr,(void)(*fun_ptr)(void),void *arg);
+
+
+Incase if thread wants more number of variables, we can use structure variable.
+
+-> Pass arguments to threadfunctions while thread creation
+-> Pass structure to threadfunctions while thread creation --- Practice from code shared by sir in google classroom
+
+pthread_t pthread_self();//when called from thread function going to return calling thread id.
+
+--> DIfferent ways a thread gets terminated:
+i) main returns;
+ii) pthread_exit();//will terminate the calling thread
+iii) pthread_cancel(pthread_t);//cancellation request made to other threads, the argument is a thread-id which you want to terminate.
+   	Return type of pthread cancel:
+		on success return 0
+		on failure negative
+
+--> pthread_join(tid,void **ptr);
+			    |
+			return code of thread on normal termination
+
+********************************************************************************************************************************
+Attributes of a thread(properties)   pthread_attributes
+	talks about about properties of a thread
+	how thread should behave once thread is created
+	Classified into 5 different categories:	
+	i) 	Stack Management 
+	ii)	Thread Synchronization
+	iii)	Thread Scheduling policy and priority
+	iv) 	Thread Specific data	
+	v)	Thread Signals
+	->pthread library provides functionality for Stack Management, Thread Synchronization,Thread Scheduling policy and 		  priority, Thread Specific data and Signals
+	-> When a thread is created, 8 MB of virtual memory for stack allocation is allocated by pthread library.
+
+My Requirement : 10 different threads where each stack requires 20 MB memory, by default we have 8 MB.
+
+
+If we want to change the attributes of thread; we will require an pthread attribute object.
+i)   Declare an object of type pthread_attr_t
+				   |
+			Internally a strcuture with different entities.
+			Initially it has garbage value.
+ii)  Initialise attribute object
+	pthread_attr_init(pthread_attr_t *attr);
+iii) Call appropriate pthread attribute function.(in this case call stack related function)
+iv)  Create pthread 
+	at the end of pthread create function, if fetch the attribute object; we will get our defined values
+v)   pthread_attr_destroy
+
+Stack related functions:
+pthread_attr_getstack(pthread_attr_t *attr, void * addr, int size);
+pthread_attr_setstack(pthread_attr_t *attr, void * myaddr, int mysize);
+
+
+****
+When two threads from two different CPUS try to access some shared instruction at the same time, the data is global shared data
+
+The instructions/code that deals with the accessing of global shared data is called critical section.
+When two threads execute the critical section at the same time, leads to race condition.
+
+****************************
+Thread Synchronization
+Linux kernel provides Synchronizing techniques to safeguard the critical section from n number of thread users.
+Types of locks:
+	Semaphore locks
+	Spin locks
+	Mutex locks
+	Atomic locks
+i) Semaphore locks
+	Semaphores are optimized for non-contension case / no competition
+	Cannot be integrated with Interrupts(Interrupt Service Routine)   -   Interrupt latency= start of ISR + End of ISR
+	No issue of priorities/ not support priorities.
+   can have sleep,wait, delay, scanf
+ii) Spin locks
+	Contension is very expensive(in terms of kernel resources)
+	Can be integrated with Interrupts(ISR)
+   The thread which fails to acquire a loop, goes into infinite times execution: spining/polling.
+   Cannot have sleep,wait,delay. - this results in simple, fast execution of critical section.
+

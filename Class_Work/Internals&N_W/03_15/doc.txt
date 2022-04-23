@@ -1,0 +1,8 @@
+********Context Switching*****
+Shifting of CPU from one running process to another which is ready to get executed.
+
+Kernel transfers Cpu to other process which is ready to execute, before that it has process.
+									Kernel saves the context of process 1
+Now, kernel loads the context of new process p2 and executes the process.
+
+After termination of new process, the process from which CPU was taken off will resume from where it left.
