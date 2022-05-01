@@ -1,2 +1,2 @@
-Zip "AbdulkadirMirza_E102_S1T2_Android" contains all the daily work done during the course.
-Zip "FinalTask" contains the sql related task. 
+Zip "MyApplication.zip"  and "MyApplication2.7z"contains all the daily work done during the course.
+Zip "FinalTask" contains the sql related task that has login, registration; using shared preferences once loged in, it remains logged and recyclerview is used to show all the registered users. Also we can delete users from the database. 
