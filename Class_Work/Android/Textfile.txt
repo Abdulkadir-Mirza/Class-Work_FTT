@@ -1,0 +1,2 @@
+Zip "AbdulkadirMirza_E102_S1T2_Android" contains all the daily work done during the course.
+Zip "FinalTask" contains the sql related task. 
